@@ -53,11 +53,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
 
-// angular.module('ionicApp', ['ionic'])
-
-// .controller('MainCtrl', function($scope) {
+.controller('BoomcastCtrl', function($scope, $firebase) {
 
 //   $scope.devList = [
 //     { text: "HTML5", checked: true },
@@ -65,11 +63,13 @@ angular.module('starter.controllers', [])
 //     { text: "JavaScript", checked: false }
 //   ];
 
-//   $scope.pushNotificationChange = function() {
-//     console.log('Push Notification Change', $scope.pushNotification.checked);
-//   };
+  var leds = new Firebase('https://boomcast.firebaseio.com/leds')
+
+  $scope.pushNotificationChange = function() {
+    console.log('Push Notification Change', $scope.pushNotification.checked);
+    leds.set($scope.pushNotification.checked);
+  };
   
-//   $scope.pushNotification = { checked: true };
-//   $scope.emailNotification = 'Subscribed';
+  $scope.pushNotification = { checked: true };
   
-// });
+});
